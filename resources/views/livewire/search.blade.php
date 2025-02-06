@@ -18,7 +18,7 @@
         <div class="mt-6">
             @foreach($results as $result)
                 <div class="p-2">
-                    {{ $result->title }}
+                    <a href="/articles/{{ $result->id }}" class="hover:text-blue-500 hover:underline">{{ $result->title }}</a>
                 </div>
             @endforeach
         </div>
