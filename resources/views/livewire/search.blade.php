@@ -3,8 +3,8 @@
         <div class="flex space-x-2"> <!-- Flex for inline alignment -->
             <input
                 type="text"
-                class="p-4 flex-1 border rounded-md dark:bg-gray-700"
-                placeholder="Type something to search..."
+                class="p-4 flex-1 border rounded-md bg-gray-700"
+                placeholder="{{ $placeholder }}"
                 wire:model.live.debounce="searchText"
             />
 
@@ -15,15 +15,6 @@
                 Clear
             </button>
         </div>
-
-        <div class="mt-6"> <!-- Margin for spacing below input field -->
-            @foreach($results as $result)
-                <div class="p-2"> <!-- Optional formatting for results -->
-                    <a href="/articles/{{ $result->id }}" class="hover:text-blue-500 hover:underline">
-                        {{ $result->title }}
-                    </a>
-                </div>
-            @endforeach
-        </div>
+        <livewire:search-results :$results :show="!empty($searchText)" />
     </form>
 </div>
