@@ -8,7 +8,7 @@
         @endif
         @foreach($results as $result)
             <div class="p-2"> <!-- Optional formatting for results -->
-                <a href="/articles/{{ $result->id }}" class="hover:text-blue-500 hover:underline">
+                <a href="/articles/{{ $result->id }}" wire:navigate class="hover:text-blue-500 hover:underline">
                     {{ $result->title }}
                 </a>
             </div>
