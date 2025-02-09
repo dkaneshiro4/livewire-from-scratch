@@ -4,34 +4,46 @@ namespace App\Livewire;
 
 use App\Models\Article;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Search extends Component
 {
-    #[Validate('required')]
+//    You can use the Url attribute to store a component's property in the URL query string
+//    #[Url(as: 'q', except:'', history: true)]
     public $searchText = '';
-    public $results = [];
+
     public $placeholder;
-
-    public function updatedSearchText($value)
-    {
-        $this->reset('results');
-
-        $this->validate();
-
-        $searchTerm = "%{$value}%";
-
-        $this->results = Article::where('title', 'like', $searchTerm)->get();
-    }
 
     #[On('search:clear-results')]
     public function clear()
     {
-        $this->reset('searchText', 'results');
+        $this->reset('searchText');
     }
+
+//    The queryString function below can be used instead of the Url attribute.
+    protected function queryString()
+    {
+        return [
+            'searchText' => [
+                'except' => '',
+                'as' => 'q',
+                'history' => true,
+            ],
+        ];
+    }
+
+//    This is the same as the above queryString function
+//    protected $queryString = [
+//        'searchText' => ['except' => '', 'as' => 'q', 'history' => true],
+//    ];
+
     public function render()
     {
-        return view('livewire.search');
+
+        return view('livewire.search', [
+            'results' => Article::where('title', 'like', "%{$this->searchText}%")->get(),
+        ]);
     }
 }
