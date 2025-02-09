@@ -10,17 +10,19 @@ use Livewire\Component;
 class PublishedCount extends Component
 {
     public $count = 0;
+    public $placeholderText = '';
 
     public function mount()
     {
-        sleep(3);
+//        Use the sleep function to demonstrate lazy loading
+        sleep(1);
         $this->count = Article::where('published', true)->count();
     }
 
     public function placeholder()
     {
         return view('livewire.placeholder', [
-            'message' => 'Published count is loading...'
+            'message' => $this->placeholderText,
         ]);
     }
 
