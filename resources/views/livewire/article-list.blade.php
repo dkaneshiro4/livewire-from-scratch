@@ -1,5 +1,5 @@
 <div class="m-auto w-1/2 mb-4">
-    <div class="mb-3">
+    <div class="mb-3 flex justify-between items-center">
         <a
             href="/dashboard/articles/create"
             class="text-gray-200 p-2 bg-blue-700 hover:bg-blue-900 rounded-sm"
@@ -7,9 +7,10 @@
             >
             Create Article
         </a>
+        <livewire:published-count />
     </div>
 
-    <table>
+    <table class="w-full">
         <thead class="text-xs uppercase bg-gray-700 text-gray-400">
             <tr>
                 <th class="py-3 px-6">Title</th>
