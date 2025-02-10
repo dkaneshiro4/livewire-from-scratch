@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Article;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Session;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,6 +14,7 @@ class ArticleList extends AdminComponent
 {
     use withPagination;
 
+    #[Session(key: 'published')]
     public $showOnlyPublished = false;
 
 //    Using the Computed attribute creates a computed property to allow a query of articles to be cached for use within a livewire request.
@@ -40,15 +42,9 @@ class ArticleList extends AdminComponent
         cache()->forget('published-count');
     }
 
-    public function showAll()
+    public function togglePublished($showOnlyPublished)
     {
-       $this->showOnlyPublished = false;
-       $this->resetPage('articles-page');
-    }
-
-    public function showPublished()
-    {
-       $this->showOnlyPublished = true;
+       $this->showOnlyPublished = $showOnlyPublished;
        $this->resetPage('articles-page');
     }
 
