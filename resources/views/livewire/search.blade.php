@@ -6,6 +6,7 @@
                 class="p-4 flex-1 border rounded-md bg-gray-700"
                 placeholder="{{ $placeholder }}"
                 wire:model.live.debounce="searchText"
+                wire:offline.attr="disabled"
             />
         </div>
         <livewire:search-results :$results :show="!empty($searchText)" />

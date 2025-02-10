@@ -32,6 +32,36 @@
             </div>
         </div>
         <div class="mb-3">
+            <label class="block" for="article-content">
+                Photo
+            </label>
+            <div class="flex items-center">
+                <input
+                    type="file"
+                    wire:model="form.photo"
+                >
+                <div class="text-center">
+                    @if ($form->photo)
+                        <img class="w-1/2 inline" src="{{ $form->photo->temporaryUrl() }}" alt="">
+                    @elseif ($form->photo_path)
+                        <img class="w-1/2 inline" src="{{ Storage::url($form->photo_path) }}" alt="">
+                        <div class="mt-2">
+                            <button
+                                type="button"
+                                class="text-gray-200 p-1 bg-blue-700 rounded-sm hover:bg-blue-900"
+                                wire:click="downloadPhoto"
+                            >
+                                Download
+                            </button>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div>
+                @error('photo') <span class="text-red-600">{{ $message }}</span> @enderror
+            </div>
+        </div>
+        <div class="mb-3">
             <label wire:dirty.class="text-orange-400" wire:target="form.published" class="flex items-center">
                 <input type="checkbox" name="published" class="mr-2" wire:model.boolean="form.published">
                 Published
@@ -73,10 +103,7 @@
         <div class="mb-3">
             <button
                 type="submit"
-                class="p-2 bg-blue-700 rounded-sm text-gray-200 disabled:opacity-75 disabled:bg-blue-300"
-                wire:dirty.class="hover:bg-blue-900"
-                wire:dirty.remove.attr="disabled"
-                disabled
+                class="p-2 bg-blue-700 rounded-sm text-gray-200"
             >
                 Save
             </button>
