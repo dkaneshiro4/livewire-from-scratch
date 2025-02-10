@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="my-3">
-        {{ $articles->links() }}
+        {{ $this->articles->links() }}
     </div>
     <table class="w-full">
         <thead class="text-xs uppercase bg-gray-700 text-gray-400">
@@ -31,7 +31,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($articles as $article)
+            @foreach ($this->articles as $article)
                 <tr class="border-b bg-gray-800 border-gray-700" wire:key="{{ $article->id }}">
                     <td class="py-3 px-6">{{ $article->title }}</td>
                     <td class="py-3 px-6">
@@ -53,6 +53,6 @@
         </tbody>
     </table>
     <div class="mt-3">
-        {{ $articles->links() }}
+        {{ $this->articles->links() }}
     </div>
 </div>

@@ -3,20 +3,21 @@
 namespace App\Livewire;
 
 use App\Models\Article;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
 #[Lazy]
 class PublishedCount extends Component
 {
-    public $count = 0;
     public $placeholderText = '';
 
-    public function mount()
+    #[Computed(cache: true, key:'published-count')]
+    public function count()
     {
 //        Use the sleep function to demonstrate lazy loading
         sleep(1);
-        $this->count = Article::where('published', true)->count();
+        return Article::where('published', true)->count();
     }
 
     public function placeholder()
