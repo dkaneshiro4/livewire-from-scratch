@@ -1,4 +1,4 @@
-<div class="{{ $show ? 'block' : 'hidden' }}">
+<div>
     <div class="mt-6 p-4 absolute border rounded-md bg-gray-700 border-indigo-600"> <!-- Margin for spacing below input field -->
 {{--        <div class="absolute top-0 right-0 pt-1 pr-3 pb-1">--}}
 {{--            <button type="button" wire:click="dispatch('search.clear-results')" >x</button>--}}

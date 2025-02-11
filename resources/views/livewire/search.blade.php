@@ -9,6 +9,10 @@
                 wire:offline.attr="disabled"
             />
         </div>
-        <livewire:search-results :$results :show="!empty($searchText)" />
+        @if (!empty($searchText))
+            <div wire:transition.opacity >
+                <livewire:search-results :$results />
+            </div>
+        @endif
     </form>
 </div>
